@@ -1,0 +1,12 @@
+TextrunSQL
+Copyright (c) 2026 Textrun
+
+TextrunSQL is an independent downstream of SQLCipher Community. Downstream-authored files are licensed under the BSD 3-Clause License in textrunsql/LICENSE unless a file states otherwise.
+
+SQLCipher is Copyright (c) 2008-2026 Zetetic, LLC. The unmodified upstream license terms remain in LICENSE.md and LICENSE.txt.
+
+SQLite source and documentation retain their upstream public-domain and notice terms, including SQLITE_LICENSE.md.
+
+OpenSSL is an external dependency and is not vendored. Its license and notices are provided by the installed or distributed OpenSSL package.
+
+No affiliation with or endorsement by Zetetic, LLC, the SQLCipher project, the SQLite project, the OpenSSL project, or NIST is implied.

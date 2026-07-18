@@ -1,3 +1,15 @@
+# TextrunSQL
+
+TextrunSQL is an independent downstream of SQLCipher Community. It adds an optional, versioned post-quantum envelope for a random 32-byte database encryption key while leaving SQLCipher's page format, pager integration, and page-encryption design unchanged.
+
+The add-on is implemented in the self-contained [`textrunsql/`](textrunsql/) subtree and uses ML-KEM-768, HKDF-SHA-256, and AES-256-GCM through OpenSSL 3.5 or later. See [`textrunsql/README.md`](textrunsql/README.md) for the supported API, format, integration procedure, and tests.
+
+TextrunSQL is not affiliated with or endorsed by Zetetic, LLC, the SQLCipher project, or the SQLite project. SQLCipher support remains with its upstream project; TextrunSQL-specific questions and security reports belong to this repository.
+
+The original SQLCipher README follows unchanged.
+
+---
+
 ## SQLCipher
 
 SQLCipher is a standalone fork of the [SQLite](https://www.sqlite.org/) database library that adds 256 bit AES encryption of database files and other security features like:

@@ -21,7 +21,7 @@ From the repository root:
 OPENSSL_PREFIX="$(brew --prefix openssl@3)"
 TCL_PREFIX="$(brew --prefix tcl-tk@8)"
 ./configure --with-tempstore=yes --fts5 --with-tcl="$TCL_PREFIX/lib" --with-tclsh="$TCL_PREFIX/bin/tclsh" CFLAGS="-O2 -DSQLITE_HAS_CODEC -DSQLITE_EXTRA_INIT=sqlcipher_extra_init -DSQLITE_EXTRA_SHUTDOWN=sqlcipher_extra_shutdown -DSQLCIPHER_TEST -I$OPENSSL_PREFIX/include" LDFLAGS="-L$OPENSSL_PREFIX/lib -lcrypto"
-make -j2 libsqlite3.a testfixture
+make libsqlite3.a testfixture
 make -C textrunsql check
 ```
 

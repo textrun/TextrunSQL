@@ -5,7 +5,7 @@ Run commands from the repository root after the SQLCipher configure command in [
 ## Focused checks
 
 ```sh
-make -j2 libsqlite3.a testfixture
+make libsqlite3.a testfixture
 ./testfixture test/sqlcipher.test
 make -C textrunsql check
 ```

@@ -50,7 +50,7 @@ jobs:
           ./configure --with-tempstore=yes --fts5 --with-tcl="$TCL_CONFIG" --with-tclsh="$TCLSH" CFLAGS="-O2 -DSQLITE_HAS_CODEC -DSQLITE_EXTRA_INIT=sqlcipher_extra_init -DSQLITE_EXTRA_SHUTDOWN=sqlcipher_extra_shutdown -DSQLCIPHER_TEST -I$OPENSSL_PREFIX/include" LDFLAGS="-L$OPENSSL_PREFIX/lib -lcrypto"
 
       - name: Build SQLCipher
-        run: make -j2 libsqlite3.a testfixture
+        run: make libsqlite3.a testfixture
 
       - name: Run inherited SQLCipher suite
         run: ./testfixture test/sqlcipher.test

@@ -1,0 +1,35 @@
+# SPDX-License-Identifier: BSD-3-Clause
+
+set testdir [file dirname $argv0]
+source $testdir/tester.tcl
+source $testdir/sqlcipher.tcl
+
+set textrunsql_good_key "x'101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f'"
+set textrunsql_wrong_key "x'101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e20'"
+forcedelete textrunsql-negative.db textrunsql-missing.db
+
+sqlite_orig db textrunsql-negative.db
+db eval "PRAGMA key = \"$textrunsql_good_key\""
+db eval {
+  CREATE TABLE protected(value TEXT NOT NULL);
+  INSERT INTO protected VALUES('authenticated-content');
+}
+db close
+
+do_test textrunsql-negative-1.1 {
+  sqlite_orig db textrunsql-negative.db
+  db eval "PRAGMA key = \"$textrunsql_wrong_key\""
+  set result [catch {db eval {SELECT value FROM protected}} message]
+  db close
+  list $result $message
+} {1 {file is not a database}}
+
+do_test textrunsql-negative-1.2 {
+  set result [catch {sqlite_orig db textrunsql-missing.db -readonly true} message]
+  if {[info commands db] ne ""} {
+    db close
+  }
+  list $result [file exists textrunsql-missing.db]
+} {1 0}
+
+forcedelete textrunsql-negative.db textrunsql-missing.db

@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: BSD-3-Clause
+
+set testdir [file dirname $argv0]
+source $testdir/tester.tcl
+source $testdir/sqlcipher.tcl
+source $testdir/permutations.test
+
+test_suite "textrunsql" -prefix "" -description {
+  Runs the focused SQLCipher compatibility tests for the TextrunSQL add-on
+} -files [
+  test_set \
+    textrunsql-core.test \
+    textrunsql-negative.test \
+    textrunsql-compatibility.test
+]
+run_test_suite textrunsql
+finish_test

@@ -1,0 +1,30 @@
+# SPDX-License-Identifier: BSD-3-Clause
+
+set testdir [file dirname $argv0]
+source $testdir/tester.tcl
+source $testdir/sqlcipher.tcl
+
+set textrunsql_raw_key "x'000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e00'"
+forcedelete textrunsql-core.db
+
+do_test textrunsql-core-1.1 {
+  sqlite_orig db textrunsql-core.db
+  db eval "PRAGMA key = \"$textrunsql_raw_key\""
+  db eval {
+    CREATE TABLE protected(value TEXT NOT NULL);
+    INSERT INTO protected VALUES('exact-dek');
+    SELECT value FROM protected;
+  }
+} {exact-dek}
+db close
+
+do_test textrunsql-core-1.2 {
+  sqlite_orig db textrunsql-core.db
+  db eval "PRAGMA key = \"$textrunsql_raw_key\""
+  db eval {
+    SELECT value FROM protected;
+    PRAGMA integrity_check;
+  }
+} {exact-dek ok}
+db close
+forcedelete textrunsql-core.db

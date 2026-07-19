@@ -1,0 +1,42 @@
+#include "internal.h"
+
+#include <openssl/crypto.h>
+
+#include <stdlib.h>
+
+static textrunsql_pq_key *fuzz_key;
+
+static void fuzz_cleanup(void) {
+  textrunsql_pq_key_free(fuzz_key);
+  fuzz_key = NULL;
+}
+
+int LLVMFuzzerInitialize(int *argc, char ***argv) {
+  static const unsigned char seed[64] = {
+    0xe5, 0x82, 0xb7, 0xd7, 0x5e, 0x6c, 0x80, 0xb0, 0x5a, 0xe3, 0x92, 0xa1, 0xfc, 0x9f, 0x71, 0x53,
+    0xb1, 0x23, 0x90, 0xfd, 0x99, 0x93, 0x03, 0x68, 0xcc, 0x67, 0xa7, 0x68, 0xba, 0xeb, 0xc8, 0xa0,
+    0x1c, 0xda, 0xcb, 0x87, 0x40, 0xc0, 0xb8, 0x7c, 0x4a, 0x37, 0x95, 0x75, 0xf1, 0x87, 0xb3, 0x67,
+    0xcb, 0xfa, 0x3b, 0x30, 0x0b, 0xf5, 0x91, 0xb1, 0x09, 0xf7, 0x98, 0x16, 0xe9, 0xcb, 0xe8, 0xf0
+  };
+  (void)argc;
+  (void)argv;
+  if(textrunsql_pq_test_key_from_seed(seed, &fuzz_key) != TEXTRUNSQL_PQ_OK) {
+    return -1;
+  }
+  if(atexit(fuzz_cleanup) != 0) {
+    fuzz_cleanup();
+    return -1;
+  }
+  return 0;
+}
+
+int LLVMFuzzerTestOneInput(const unsigned char *data, size_t size) {
+  static const unsigned char context[] = "textrunsql/fuzz/database";
+  unsigned char dek[TEXTRUNSQL_PQ_DEK_BYTES];
+
+  if(fuzz_key != NULL) {
+    textrunsql_pq_open_dek(fuzz_key, context, sizeof(context) - 1, data, size, dek);
+  }
+  OPENSSL_cleanse(dek, sizeof(dek));
+  return 0;
+}

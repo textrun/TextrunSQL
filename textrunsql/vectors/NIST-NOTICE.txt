@@ -1,0 +1,36 @@
+NIST ACVP-Server notice
+=======================
+
+Source: https://github.com/usnistgov/ACVP-Server
+Pinned commit: 15c0f3deeefbfa8cb6cd32a99e1ca3b738c66bf0
+
+NIST-developed software is provided by NIST as a public service. You may use, copy, and distribute copies of the software in any medium, provided that you keep intact this entire notice. You may improve, modify, and create derivative works of the software or any portion of the software, and you may copy and distribute such modifications or works. Modified works should carry a notice stating that you changed the software and should note the date and nature of any such change. Please explicitly acknowledge the National Institute of Standards and Technology as the source of the software.
+
+NIST-developed software is expressly provided "AS IS." NIST MAKES NO WARRANTY OF ANY KIND, EXPRESS, IMPLIED, IN FACT, OR ARISING BY OPERATION OF LAW, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, AND DATA ACCURACY. NIST NEITHER REPRESENTS NOR WARRANTS THAT THE OPERATION OF THE SOFTWARE WILL BE UNINTERRUPTED OR ERROR-FREE, OR THAT ANY DEFECTS WILL BE CORRECTED. NIST DOES NOT WARRANT OR MAKE ANY REPRESENTATIONS REGARDING THE USE OF THE SOFTWARE OR THE RESULTS THEREOF, INCLUDING BUT NOT LIMITED TO THE CORRECTNESS, ACCURACY, RELIABILITY, OR USEFULNESS OF THE SOFTWARE.
+
+You are solely responsible for determining the appropriateness of using and distributing the software and you assume all risks associated with its use, including but not limited to the risks and costs of program errors, compliance with applicable laws, damage to or loss of data, programs or equipment, and the unavailability or interruption of operation. This software is not intended to be used in any situation where a failure could cause risk of injury or damage to property. The software developed by NIST employees is not subject to copyright protection within the United States.
+
+TextrunSQL modification notice
+------------------------------
+
+On 2026-07-19, TextrunSQL mechanically selected one ML-KEM-768 key-generation case and one encapsulation/decapsulation case from the pinned ACVP-Server sample JSON files. The projection changes the container syntax and field names but does not alter vector byte strings or expected outcomes. NIST is the source of the original vectors. NIST does not endorse TextrunSQL or this projection.
+
+Source files:
+
+gen-val/json-files/ML-KEM-keyGen-FIPS203/prompt.json
+SHA-256: 3f9ce34f6c836c77958bad2729e837c3b213f44ac36c3065976e7acca6389523
+
+gen-val/json-files/ML-KEM-keyGen-FIPS203/internalProjection.json
+SHA-256: d7a62a2c3476957f56dd8d24f9004ea6776ccfe995ffe71a65bb9506dc9c7b1b
+
+gen-val/json-files/ML-KEM-keyGen-FIPS203/expectedResults.json
+SHA-256: a253d0ad91c95ebea5b409673defef0aa49d65d4ed72286399e2e798ddf073a4
+
+gen-val/json-files/ML-KEM-encapDecap-FIPS203/prompt.json
+SHA-256: 91d405f78eb450d42e59e40948148212566e7b31b3ff953366c01c084152a0e3
+
+gen-val/json-files/ML-KEM-encapDecap-FIPS203/internalProjection.json
+SHA-256: f1e22b7d399dde7bf61b838770c658a380e4b1cfc4bd395dbed9ec6c1d977d9d
+
+gen-val/json-files/ML-KEM-encapDecap-FIPS203/expectedResults.json
+SHA-256: 5f1544d9604ca27c0388d114344fa14ee4d8f8e902a1c13832aa8ff5db3c535d

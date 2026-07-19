@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: BSD-3-Clause
+
+set testdir [file dirname $argv0]
+source $testdir/tester.tcl
+source $testdir/sqlcipher.tcl
+
+set textrunsql_compat_key "x'f0e0d0c0b0a09080706050403020100000102030405060708090a0b0c0d0e0f0'"
+set textrunsql_compat_passphrase "f0e0d0c0b0a09080706050403020100000102030405060708090a0b0c0d0e0f0"
+forcedelete textrunsql-compat.db
+
+do_test textrunsql-compatibility-1.1 {
+  sqlite_orig db textrunsql-compat.db
+  sqlite3_key db $textrunsql_compat_key
+  db eval {
+    CREATE TABLE protected(value INTEGER NOT NULL);
+    INSERT INTO protected VALUES(42);
+  }
+  db close
+  sqlite_orig db textrunsql-compat.db
+  db eval "PRAGMA key = \"$textrunsql_compat_key\""
+  db eval {
+    SELECT value FROM protected;
+    PRAGMA integrity_check;
+  }
+} {42 ok}
+db close
+
+do_test textrunsql-compatibility-1.2 {
+  sqlite_orig db textrunsql-compat.db
+  db eval "PRAGMA key = '$textrunsql_compat_passphrase'"
+  set result [catch {db eval {SELECT value FROM protected}} message]
+  db close
+  list $result $message
+} {1 {file is not a database}}
+
+forcedelete textrunsql-compat.db

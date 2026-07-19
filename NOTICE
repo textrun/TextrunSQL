@@ -9,4 +9,6 @@ SQLite source and documentation retain their upstream public-domain and notice t
 
 OpenSSL is an external dependency and is not vendored. Its license and notices are provided by the installed or distributed OpenSSL package.
 
+The minimal NIST ACVP sample projection under textrunsql/vectors retains its source, revision, file hashes, modification notice, and complete NIST notice in textrunsql/vectors/NIST-NOTICE.txt.
+
 No affiliation with or endorsement by Zetetic, LLC, the SQLCipher project, the SQLite project, the OpenSSL project, or NIST is implied.

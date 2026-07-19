@@ -12,6 +12,8 @@ Generic SQLCipher fixes should first follow SQLCipher's contribution process, in
 
 Submit only work you have the right to license under the BSD 3-Clause terms used for downstream-authored files. Do not submit code or documentation copied from commercial, enterprise, FIPS, trial, confidential-support, customer, or otherwise restricted sources.
 
+Sign each commit with `git commit -s`. The sign-off certifies the [Developer Certificate of Origin 1.1](https://developercertificate.org/) for that contribution; it is not a claim about SQLCipher's separate contributor agreement.
+
 ## Changes
 
 - preserve upstream formatting and authorship;

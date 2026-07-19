@@ -4,6 +4,8 @@ TextrunSQL is an independent downstream of SQLCipher Community. It adds an optio
 
 The add-on is implemented in the self-contained [`textrunsql/`](textrunsql/) subtree and uses ML-KEM-768, HKDF-SHA-256, and AES-256-GCM through OpenSSL 3.5 or later. See [`textrunsql/README.md`](textrunsql/README.md) for the supported API, format, integration procedure, and tests.
 
+This repository is private pre-1.0 source. Customer distribution remains subject to the independent review, product-lifecycle, platform, legal, and release gates named in the add-on documentation.
+
 TextrunSQL is not affiliated with or endorsed by Zetetic, LLC, the SQLCipher project, or the SQLite project. SQLCipher support remains with its upstream project; TextrunSQL-specific questions and security reports belong to this repository.
 
 The original SQLCipher README follows unchanged.

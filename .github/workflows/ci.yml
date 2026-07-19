@@ -1,0 +1,74 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  source-and-tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - macos-15
+          - ubuntu-24.04
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install macOS dependencies
+        if: runner.os == 'macOS'
+        run: |
+          brew install openssl@3 tcl-tk@8 llvm
+          echo "OPENSSL_PREFIX=$(brew --prefix openssl@3)" >> "$GITHUB_ENV"
+          echo "TCL_CONFIG=$(brew --prefix tcl-tk@8)/lib" >> "$GITHUB_ENV"
+          echo "TCLSH=$(brew --prefix tcl-tk@8)/bin/tclsh" >> "$GITHUB_ENV"
+          echo "FUZZ_CC=$(brew --prefix llvm)/bin/clang" >> "$GITHUB_ENV"
+
+      - name: Install Linux dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes build-essential clang curl perl tcl-dev zlib1g-dev
+          curl --proto '=https' --tlsv1.2 -fSLO https://github.com/openssl/openssl/releases/download/openssl-3.5.7/openssl-3.5.7.tar.gz
+          echo "a8c0d28a529ca480f9f36cf5792e2cd21984552a3c8e4aa11a24aa31aeac98e8  openssl-3.5.7.tar.gz" | sha256sum --check
+          tar -xzf openssl-3.5.7.tar.gz
+          cd openssl-3.5.7
+          ./Configure --prefix="$HOME/openssl-3.5.7" --libdir=lib no-shared no-tests
+          make -j2
+          make install_sw
+          echo "OPENSSL_PREFIX=$HOME/openssl-3.5.7" >> "$GITHUB_ENV"
+          echo "TCL_CONFIG=$(dirname "$(find /usr/lib -name tclConfig.sh -print -quit)")" >> "$GITHUB_ENV"
+          echo "TCLSH=$(command -v tclsh)" >> "$GITHUB_ENV"
+          echo "FUZZ_CC=$(command -v clang)" >> "$GITHUB_ENV"
+
+      - name: Configure SQLCipher
+        run: |
+          ./configure --with-tempstore=yes --fts5 --with-tcl="$TCL_CONFIG" --with-tclsh="$TCLSH" CFLAGS="-O2 -DSQLITE_HAS_CODEC -DSQLITE_EXTRA_INIT=sqlcipher_extra_init -DSQLITE_EXTRA_SHUTDOWN=sqlcipher_extra_shutdown -DSQLCIPHER_TEST -I$OPENSSL_PREFIX/include" LDFLAGS="-L$OPENSSL_PREFIX/lib -lcrypto"
+
+      - name: Build SQLCipher
+        run: make -j2 libsqlite3.a testfixture
+
+      - name: Run inherited SQLCipher suite
+        run: ./testfixture test/sqlcipher.test
+
+      - name: Run focused add-on suite
+        run: make -C textrunsql check
+
+      - name: Run sanitizers
+        run: make -C textrunsql asan
+
+      - name: Run fuzzer smoke
+        run: make -C textrunsql FUZZ_CC="$FUZZ_CC" fuzz-smoke
+
+      - name: Inspect production symbols and source changes
+        run: |
+          make -C textrunsql all
+          if nm textrunsql/build/libtextrunsql_pq.a | grep -E 'textrunsql_(pq_test|test_fail)'; then
+            exit 1
+          fi
+          git diff --check
+          git diff --exit-code

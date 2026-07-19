@@ -26,3 +26,9 @@ The local `upstream` remote fetches from the official SQLCipher GitHub repositor
 6. Re-run the complete TextrunSQL qualification matrix.
 
 TextrunSQL-specific product files are not proposed as upstream SQLCipher changes. Independently useful SQLCipher fixes should be discussed with SQLCipher maintainers first and prepared against the branch they request.
+
+## Downstream delta
+
+The downstream changes preserve every inherited SQLCipher and SQLite C source file byte-for-byte. One short README preface and four root policy/provenance documents identify the independent project. The new `textrunsql/` subtree contains a small C API and OpenSSL provider adapter, a fixed one-recipient envelope, an external exact raw-key adapter, focused tests, text vectors, and concise design/build documents. Four focused Tcl files exercise stock SQLCipher semantics, and one read-only CI workflow runs inherited and downstream checks.
+
+No current downstream change is proposed as an independently useful SQLCipher patch. The add-on does not modify SQLCipher's pager, codec, file format, rekey behavior, amalgamation, or public ABI. A later upstream conversation should begin only with a narrowly reproducible SQLCipher issue or generally useful test, separated from TextrunSQL naming and product policy, and should follow the contribution process requested by SQLCipher maintainers.

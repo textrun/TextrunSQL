@@ -17,16 +17,18 @@ jobs:
           - ubuntu-24.04
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
       - name: Install macOS dependencies
         if: runner.os == 'macOS'
         run: |
-          brew install openssl@3 tcl-tk@8 llvm
+          brew install openssl@3 tcl-tk@8
           echo "OPENSSL_PREFIX=$(brew --prefix openssl@3)" >> "$GITHUB_ENV"
           echo "TCL_CONFIG=$(brew --prefix tcl-tk@8)/lib" >> "$GITHUB_ENV"
           echo "TCLSH=$(brew --prefix tcl-tk@8)/bin/tclsh" >> "$GITHUB_ENV"
-          echo "FUZZ_CC=$(brew --prefix llvm)/bin/clang" >> "$GITHUB_ENV"
+          FUZZ_CC="$(brew --prefix llvm@18)/bin/clang"
+          test -x "$FUZZ_CC"
+          echo "FUZZ_CC=$FUZZ_CC" >> "$GITHUB_ENV"
 
       - name: Install Linux dependencies
         if: runner.os == 'Linux'

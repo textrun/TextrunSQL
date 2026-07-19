@@ -21,7 +21,7 @@ make -C textrunsql asan
 make -C textrunsql fuzz-smoke
 ```
 
-`asan` rebuilds the focused C tests and public consumer with AddressSanitizer and UndefinedBehaviorSanitizer. `fuzz-smoke` uses a libFuzzer-capable Clang, generates a binary seed from the tracked version-1 vector under the ignored build directory, loads the small format dictionary, and runs 5,000 parser executions. On macOS, the Makefile selects Homebrew LLVM when available because Apple Clang does not ship the libFuzzer runtime.
+`asan` rebuilds the focused C tests and public consumer with AddressSanitizer and UndefinedBehaviorSanitizer. `fuzz-smoke` uses a libFuzzer-capable Clang, generates a binary seed from the tracked version-1 vector under the ignored build directory, loads the small format dictionary, and runs 5,000 parser executions. On macOS, the Makefile selects Homebrew LLVM when available because Apple Clang does not ship the libFuzzer runtime. The `macos-15` GitHub-hosted lane uses the image's Homebrew LLVM 18 compiler, which is compatible with that image's Xcode 16 linker.
 
 ## Optimized object checks
 

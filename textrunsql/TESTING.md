@@ -35,10 +35,10 @@ otool -L textrunsql/build/test_keyspec
 
 On ELF systems use `readelf -d` or `ldd` instead of `otool`. The production archive must contain no deterministic test or fault-injection symbol. The consumer links the one SQLCipher archive built from this repository; it must not link another SQLite library.
 
-Object disassembly must retain calls or relocations to `OPENSSL_cleanse` from the envelope, provider, and keyspec objects. The final qualification also scans logs and tracked files for private paths, credentials, generated outputs, and synthetic secrets outside the documented public vectors.
+Object disassembly must retain calls or relocations to `OPENSSL_cleanse` from the envelope, provider, and keyspec objects. The final qualification also scans logs and tracked files for machine-local paths, credentials, generated outputs, and synthetic secrets outside the documented public vectors.
 
 ## What these checks establish
 
 The suite establishes exact behavior for the tested commit, OpenSSL provider, compiler, operating system, architecture, and flags. NIST sample agreement establishes exact tested ML-KEM inputs and outputs. It does not establish side-channel resistance, a validated cryptographic module, safe product lifecycle, every OpenSSL provider configuration, or every platform.
 
-Before customer distribution, qualify the exact delivery artifact on every supported platform and compiler, complete independent cryptographic and protocol review, test product-owned custody/backup/recovery/atomic-publication behavior, and repeat the security and dependency review.
+Before distributing a delivery artifact, qualify it on every supported platform and compiler, complete independent cryptographic and protocol review, test product-owned custody/backup/recovery/atomic-publication behavior, and repeat the security and dependency review.

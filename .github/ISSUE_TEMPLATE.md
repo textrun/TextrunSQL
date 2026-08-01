@@ -1,9 +1,24 @@
-### Expected Behavior
+# TextrunSQL issue
 
-### Actual Behavior
+Do not report suspected vulnerabilities, credentials, private keys, sensitive data, or production databases in a public issue. Follow [SECURITY.md](../SECURITY.md) for confidential reporting.
 
-### Steps to Reproduce
+## Scope
 
-SQLCipher version:
+Explain whether the issue is in the `textrunsql/` add-on, its SQLCipher integration, documentation, or qualification workflow. If it reproduces against unmodified SQLCipher without the TextrunSQL add-on, follow SQLCipher's upstream reporting process.
 
-*Note:* If you are not posting a specific issue for the SQLCipher library, please consider posting your question to the SQLCipher [discuss site](https://discuss.zetetic.net/c/sqlcipher).  Thanks!
+## Expected behavior
+
+## Actual behavior
+
+## Steps to reproduce
+
+Use synthetic inputs and provide the smallest complete reproducer.
+
+## Environment
+
+- TextrunSQL commit:
+- SQLCipher version:
+- SQLite version:
+- OpenSSL version and provider:
+- Compiler:
+- Operating system and architecture:

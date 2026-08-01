@@ -1,1 +1,5 @@
-We ask that you submit a contributor agreement in order for us to accept this request.  More information about this agreement can be found [here](https://www.zetetic.net/contributions/).  Pull requests are merged into the `prerelease` branch.  Please let us know if you have any further questions.  Thanks!
+# Contributing to TextrunSQL
+
+Follow the repository's [TextrunSQL contribution policy](../CONTRIBUTING.md). TextrunSQL-specific contributions use the sign-off and licensing process documented there and target this repository's default branch.
+
+Generic SQLCipher fixes should first follow SQLCipher's contribution process, including the branch and contributor agreement requested by the SQLCipher maintainers. Do not mix an upstream SQLCipher candidate with TextrunSQL branding or unrelated downstream changes.

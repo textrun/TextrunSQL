@@ -52,4 +52,4 @@ There is no negotiation, fallback, compression, extension field, alternate seria
 
 Files in [vectors](vectors/) are hexadecimal or `name=value` text. [vectors/README.md](vectors/README.md) records their source, revision, producer, hashes, public synthetic-secret status, and reproduction commands.
 
-Format version 1 is private pre-1.0 data. A future incompatible definition must use a new format or suite identifier. Readers must reject unknown identifiers; they must never reinterpret version 1 bytes under a changed algorithm. A migration tool requires independent design, failure-recovery tests, and an explicit owner decision before use.
+Format version 1 has an exact byte definition. A future incompatible definition must use a new format or suite identifier. Readers must reject unknown identifiers; they must never reinterpret version 1 bytes under a changed algorithm. A migration tool requires independent design, failure-recovery tests, and an explicit release decision before use.

@@ -2,7 +2,7 @@
 
 This subtree adds an optional post-quantum protection layer for a random 32-byte SQLCipher database encryption key (DEK). SQLCipher continues to encrypt database pages; TextrunSQL seals and opens the DEK before the caller applies it through SQLCipher's public raw-key interface.
 
-The implementation is private pre-1.0 source. Format version 1 is exact and tested, but compatibility is not promised across a future pre-1.0 format change. A format or suite change requires a new identifier and explicit migration tooling before customer data uses it.
+Format version 1 is exact and tested. A format or suite change requires a new identifier and explicit migration tooling before stored data uses it.
 
 ## Dependencies
 
@@ -48,6 +48,6 @@ The caller owns exported keys, envelopes, contexts, and DEKs. Wipe private-key e
 
 The add-on performs no database, envelope, journal, WAL, directory, or sidecar I/O. It does not implement recipient mutation, multi-recipient selection, DEK rotation or rekey, automatic profile migration, backup orchestration, atomic database-plus-envelope publication, crash recovery, rollback prevention, key custody, password recovery, framework packaging, or application distribution.
 
-The calling product must define durable key custody, atomic publication and backup of the database with its envelope and context metadata, restore verification, incident response, dependency updates, and supported-platform qualification. Independent cryptographic and protocol review, legal/name/export review, delivery-artifact testing, and owner release approval remain required before customer distribution.
+The calling product must define durable key custody, atomic publication and backup of the database with its envelope and context metadata, restore verification, incident response, dependency updates, and supported-platform qualification. Independent cryptographic and protocol review, legal/name/export review, delivery-artifact testing, and release approval remain required before deployment.
 
 Normative details are in [DESIGN.md](DESIGN.md), [FORMAT.md](FORMAT.md), and the public [header](include/textrunsql_pq.h).

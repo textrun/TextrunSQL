@@ -10,14 +10,14 @@ Generic SQLCipher fixes should first follow SQLCipher's contribution process, in
 
 ## Provenance
 
-Submit only work you have the right to license under the BSD 3-Clause terms used for downstream-authored files. Do not submit code or documentation copied from commercial, enterprise, FIPS, trial, confidential-support, customer, or otherwise restricted sources.
+Submit only work you have the right to license under the BSD 3-Clause terms used for downstream-authored files. Do not submit code or documentation copied from commercial, enterprise, FIPS, trial, confidential-support, third-party, or otherwise restricted sources.
 
 Sign each commit with `git commit -s`. The sign-off certifies the [Developer Certificate of Origin 1.1](https://developercertificate.org/) for that contribution; it is not a claim about SQLCipher's separate contributor agreement.
 
 ## Changes
 
 - preserve upstream formatting and authorship;
-- avoid generated amalgamations, binaries, frameworks, build output, benchmark reports, and private evidence;
+- avoid generated amalgamations, binaries, frameworks, build output, benchmark reports, and non-public evidence;
 - keep public APIs explicit about lengths, ownership, errors, and thread safety;
 - add the smallest permanent regression test for every defect;
 - update format documentation and vectors when wire bytes change; and

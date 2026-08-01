@@ -43,7 +43,7 @@ Keys are immutable after construction. Independent key objects may be used concu
 
 ## Versioning
 
-Format version 1 and suite 1 have one canonical interpretation. Unknown versions and suites are rejected. Any field, algorithm, key derivation, associated-data rule, or lifecycle change that alters meaning requires a new format or suite identifier and new vectors. Migration must be designed and tested before changing stored customer data.
+Format version 1 and suite 1 have one canonical interpretation. Unknown versions and suites are rejected. Any field, algorithm, key derivation, associated-data rule, or lifecycle change that alters meaning requires a new format or suite identifier and new vectors. Migration must be designed and tested before changing stored data.
 
 ## Assurance boundary
 

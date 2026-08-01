@@ -1,5 +1,5 @@
 TextrunSQL
-Copyright (c) 2026 Textrun
+Copyright (c) 2026, Maximilian Götzfried, max@text.run
 
 TextrunSQL is an independent downstream of SQLCipher Community. Downstream-authored files are licensed under the BSD 3-Clause License in textrunsql/LICENSE unless a file states otherwise.
 

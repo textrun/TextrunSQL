@@ -1,0 +1,292 @@
+<svg
+    class="flow-diagram seal-flow"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 552 292"
+    fill="none"
+    width="672"
+    height="356"
+    role="img"
+    aria-labelledby="seal-title seal-desc"
+>
+  <style>
+    :root {
+      --blue: #8eb8ff;
+      --border-color: #cfcfd6;
+      --coral: #ff8b7a;
+      --diagram-line: #4a4a52;
+      --page-bg: #ececec;
+      --panel-bg: #f7f7f7;
+      --primary: #8a70b5;
+      --text: #222226;
+      --muted-text: #5c5c66;
+      --radius-flow: 6px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --blue: #8eb8ff;
+        --border-color: #3a3b44;
+        --coral: #ff9b8c;
+        --diagram-line: #a8a8b3;
+        --page-bg: #1a1b1f;
+        --panel-bg: #24252b;
+        --primary: #b39ddb;
+        --text: #ececf1;
+        --muted-text: #a8a8b3;
+      }
+    }
+
+    .diagram-background {
+      fill: var(--panel-bg);
+    }
+
+    .flow-line {
+      fill: none;
+      stroke: var(--diagram-line);
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1;
+    }
+
+    .arrowhead {
+      fill: var(--diagram-line);
+      stroke: none;
+    }
+
+    .guide-blue,
+    .guide-coral,
+    .guide-muted {
+      fill: none;
+      stroke-dasharray: 3 3;
+      stroke-width: 1;
+    }
+
+    .guide-blue {
+      opacity: 0.85;
+      stroke: var(--blue);
+    }
+
+    .guide-coral {
+      opacity: 0.75;
+      stroke: var(--coral);
+    }
+
+    .guide-muted {
+      stroke: var(--border-color);
+    }
+
+    .envelope-box,
+    .flow-box,
+    .flow-box-blue,
+    .flow-box-coral,
+    .flow-box-key,
+    .flow-box-primary {
+      rx: var(--radius-flow);
+      ry: var(--radius-flow);
+      shape-rendering: geometricPrecision;
+      stroke-width: 0.5px;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .flow-box {
+      fill: var(--panel-bg);
+      stroke: var(--border-color);
+    }
+
+    .flow-box-blue {
+      fill: color-mix(in srgb, var(--blue) 14%, var(--panel-bg));
+      stroke: color-mix(in srgb, var(--blue) 45%, var(--panel-bg));
+    }
+
+    .flow-box-coral {
+      fill: color-mix(in srgb, var(--coral) 12%, var(--panel-bg));
+      stroke: color-mix(in srgb, var(--coral) 45%, var(--panel-bg));
+    }
+
+    .flow-box-key {
+      stroke: color-mix(in srgb, var(--coral) 45%, var(--panel-bg));
+    }
+
+    .flow-box-primary {
+      fill: color-mix(in srgb, var(--primary) 14%, var(--panel-bg));
+      stroke: color-mix(in srgb, var(--primary) 45%, var(--panel-bg));
+    }
+
+    .envelope-box {
+      fill: color-mix(in srgb, var(--text) 4%, var(--panel-bg));
+      stroke: var(--border-color);
+    }
+
+    .seal-flow .flow-box-key {
+      fill: url("#seal-key-stripes");
+    }
+
+    .open-flow .flow-box-key {
+      fill: url("#open-key-stripes");
+    }
+
+    .section-badge {
+      fill: var(--diagram-line);
+      stroke: none;
+    }
+
+    .section-detail {
+      fill: color-mix(in srgb, var(--diagram-line) 10%, var(--panel-bg));
+      stroke: none;
+    }
+
+    .section-badge-text,
+    .section-detail-text {
+      dominant-baseline: middle;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .section-badge-text {
+      fill: var(--page-bg);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      text-anchor: middle;
+    }
+
+    .section-detail-text {
+      fill: var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      text-anchor: start;
+    }
+
+    .code-label,
+    .text-label,
+    .size-label {
+      dominant-baseline: middle;
+      text-anchor: middle;
+    }
+
+    .code-label,
+    .text-label {
+      fill: var(--text);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .code-label,
+    .size-label {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .text-label {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .size-label {
+      fill: var(--muted-text);
+      font-size: 9px;
+      font-weight: 400;
+    }
+
+    .detail-label {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 9.5px;
+      transform: translateY(0.5px);
+    }
+
+    .quarter-space {
+      font-size: 25%;
+    }
+
+    .half-space {
+      font-size: 50%;
+    }
+  </style>
+  <rect class="diagram-background" width="552" height="292" rx="6"/>
+    <title id="seal-title">Seal and envelope flow</title>
+    <desc id="seal-desc">textrunsql_pq_seal_dek() starts with a context of 1 to 1024 bytes, a 1184-byte recipient public key, and a 32-byte database encryption key. SHA-256 hashes the public key and context to bind the envelope to that recipient and context. ML-KEM-768 uses the public key to create a 1088-byte KEM ciphertext and a shared secret. HKDF turns the shared secret into a wrapping key. AES-GCM uses that key to wrap the database key. The 1236-byte envelope contains a 24-byte header, 32-byte recipient ID, 32-byte context hash, 1088-byte KEM ciphertext, 12-byte nonce, 32-byte wrapped database key, and 16-byte authentication tag. Envelope bytes 0 through 1187 are authenticated but not encrypted. Bytes 1188 through 1235 hold the wrapped database key and tag.</desc>
+    <defs>
+        <pattern
+            id="seal-key-stripes"
+            patternUnits="userSpaceOnUse"
+            width="8"
+            height="8"
+            patternTransform="rotate(45)"
+        >
+            <rect width="8" height="8" fill="color-mix(in srgb, var(--coral, #ff8b7a) 10%, var(--panel-bg, #f7f7f7))"/>
+            <rect width="4" height="8" fill="color-mix(in srgb, var(--coral, #ff8b7a) 28%, var(--panel-bg, #f7f7f7))"/>
+        </pattern>
+    </defs>
+    <path class="section-badge" d="M22,16 H55 V34 H22 Q16,34 16,28 V22 Q16,16 22,16 Z"/>
+    <path class="section-detail" d="M55,16 H227 Q233,16 233,22 V28 Q233,34 227,34 H55 Z"/>
+    <text class="section-badge-text" x="35.5" y="26">Seal</text>
+    <text class="section-detail-text" x="62" y="26">textrunsql_pq_seal_dek()</text>
+    <rect class="flow-box" x="16" y="50" width="80" height="36"/>
+    <text class="code-label" x="56" y="63.5">context</text>
+    <text class="size-label" x="56" y="75.5">1–1024<tspan class="half-space"> </tspan>B</text>
+    <rect class="flow-box" x="116" y="50" width="64" height="36"/>
+    <text class="code-label" x="148" y="63.5">pk</text>
+    <text class="size-label" x="148" y="75.5">1184<tspan class="half-space"> </tspan>B</text>
+    <rect class="flow-box-key" x="448" y="50" width="48" height="36"/>
+    <text class="code-label" x="472" y="63.5">DEK</text>
+    <text class="size-label" x="472" y="75.5">32<tspan class="half-space"> </tspan>B</text>
+    <line class="flow-line" x1="56" y1="86" x2="56" y2="96.4"/>
+    <polygon class="arrowhead" points="53.2,96.4 56,102 58.8,96.4"/>
+    <line class="flow-line" x1="136" y1="86" x2="136" y2="96.4"/>
+    <polygon class="arrowhead" points="133.2,96.4 136,102 138.8,96.4"/>
+    <path class="flow-line" d="M160 86 V116 Q160 120 164 120 H202.4"/>
+    <polygon class="arrowhead" points="202.4,117.2 208,120 202.4,122.8"/>
+    <line class="flow-line" x1="472" y1="86" x2="472" y2="96.4"/>
+    <polygon class="arrowhead" points="469.2,96.4 472,102 474.8,96.4"/>
+    <rect class="flow-box-coral" x="48" y="102" width="96" height="36"/>
+    <text class="text-label" x="96" y="115.5">Bind</text>
+    <text class="size-label" x="96" y="127.5">SHA-256</text>
+    <rect class="flow-box-blue" x="208" y="102" width="120" height="36"/>
+    <text class="text-label" x="268" y="115.5">Encapsulate</text>
+    <text class="size-label" x="268" y="127.5">ML-KEM-768</text>
+    <rect class="flow-box-coral" x="408" y="102" width="128" height="36"/>
+    <text class="text-label" x="472" y="115.5">Wrap</text>
+    <text class="size-label" x="472" y="127.5">AES-256-GCM</text>
+    <line class="flow-line" x1="328" y1="120" x2="330.4" y2="120"/>
+    <polygon class="arrowhead" points="330.4,117.2 336,120 330.4,122.8"/>
+    <rect class="flow-box-primary" x="336" y="102" width="64" height="36"/>
+    <text class="text-label" x="368" y="115.5">Derive</text>
+    <text class="size-label" x="368" y="127.5">HKDF</text>
+    <line class="flow-line" x1="400" y1="120" x2="402.4" y2="120"/>
+    <polygon class="arrowhead" points="402.4,117.2 408,120 402.4,122.8"/>
+    <line class="guide-coral" x1="48" y1="138" x2="48" y2="188"/>
+    <line class="guide-coral" x1="144" y1="138" x2="144" y2="188"/>
+    <line class="guide-blue" x1="208" y1="138" x2="144" y2="188"/>
+    <line class="guide-blue" x1="328" y1="138" x2="408" y2="188"/>
+    <line class="guide-coral" x1="408" y1="138" x2="408" y2="188"/>
+    <line class="guide-coral" x1="536" y1="138" x2="536" y2="188"/>
+    <path class="section-badge" d="M22,154 H80 V172 H22 Q16,172 16,166 V160 Q16,154 22,154 Z"/>
+    <path class="section-detail" d="M80,154 H129 Q135,154 135,160 V166 Q135,172 129,172 H80 Z"/>
+    <text class="section-badge-text" x="48" y="164">Envelope</text>
+    <text class="section-detail-text" x="87" y="164">1236<tspan class="half-space"> </tspan>B</text>
+    <rect class="flow-box" x="16" y="188" width="32" height="36"/>
+    <text class="code-label" x="32" y="201.5">hdr</text>
+    <text class="size-label" x="32" y="213.5">24<tspan class="half-space"> </tspan>B</text>
+    <rect class="flow-box-coral" x="48" y="188" width="48" height="36"/>
+    <text class="code-label" x="72" y="201.5">rid</text>
+    <text class="size-label" x="72" y="213.5">32<tspan class="half-space"> </tspan>B</text>
+    <rect class="flow-box-coral" x="96" y="188" width="48" height="36"/>
+    <text class="code-label" x="120" y="201.5">chash</text>
+    <text class="size-label" x="120" y="213.5">32<tspan class="half-space"> </tspan>B</text>
+    <rect class="flow-box-blue" x="144" y="188" width="264" height="36"/>
+    <text class="code-label" x="276" y="201.5">KEM ciphertext</text>
+    <text class="size-label" x="276" y="213.5">1088<tspan class="half-space"> </tspan>B</text>
+    <rect class="flow-box-coral" x="408" y="188" width="40" height="36"/>
+    <text class="code-label" x="428" y="201.5">nonce</text>
+    <text class="size-label" x="428" y="213.5">12<tspan class="half-space"> </tspan>B</text>
+    <rect class="flow-box-key" x="448" y="188" width="48" height="36"/>
+    <text class="code-label" x="472" y="201.5">wDEK</text>
+    <text class="size-label" x="472" y="213.5">32<tspan class="half-space"> </tspan>B</text>
+    <rect class="flow-box-coral" x="496" y="188" width="40" height="36"/>
+    <text class="code-label" x="516" y="201.5">tag</text>
+    <text class="size-label" x="516" y="213.5">16<tspan class="half-space"> </tspan>B</text>
+    <line class="guide-muted" x1="16" y1="224" x2="16" y2="240"/>
+    <line class="guide-muted" x1="448" y1="224" x2="448" y2="240"/>
+    <rect class="flow-box" x="16" y="240" width="432" height="36"/>
+    <text class="code-label" x="232" y="253.5">AAD</text>
+    <text class="size-label" x="232" y="265.5">0..1187</text>
+    <line class="guide-muted" x1="536" y1="224" x2="536" y2="240"/>
+    <rect class="flow-box" x="448" y="240" width="88" height="36"/>
+    <text class="text-label" x="492" y="253.5">GCM output</text>
+    <text class="size-label" x="492" y="265.5">1188..1235</text>
+</svg>

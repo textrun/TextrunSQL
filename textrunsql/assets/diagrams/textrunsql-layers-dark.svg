@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="672" height="456" viewBox="0 0 672 456" fill="none" role="img" aria-labelledby="overview-title overview-description">
+  <title id="overview-title">Layer diagram</title>
+  <desc id="overview-description">App uses TextrunSQL to protect the key; SQLCipher encrypts the database on SQLite</desc>
+  <style>
+    :root {
+      --ink: #ececf1;
+      --muted: #a8a8b3;
+      --line: #3a3b44;
+      --background: #24252b;
+      --panel: #2a2b32;
+      --primary: #b39ddb;
+      --primary-soft: #2f2740;
+      --coral: #ff9b8c;
+      --coral-soft: #402724;
+      --blue: #8eb8ff;
+      --blue-soft: #243248;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #ececf1;
+        --muted: #a8a8b3;
+        --line: #3a3b44;
+        --background: #24252b;
+        --panel: #2a2b32;
+        --primary: #b39ddb;
+        --primary-soft: #2f2740;
+        --coral: #ff9b8c;
+        --coral-soft: #402724;
+        --blue: #8eb8ff;
+        --blue-soft: #243248;
+      }
+    }
+
+    .frame,
+    .card,
+    .connector {
+      vector-effect: non-scaling-stroke;
+      shape-rendering: crispEdges;
+    }
+
+    .frame {
+      fill: var(--background);
+      stroke: var(--line);
+      stroke-width: 1;
+    }
+
+    .card {
+      stroke-width: 1;
+    }
+
+    .card-app {
+      fill: var(--panel);
+      stroke: var(--line);
+    }
+
+    .card-textrunsql {
+      fill: var(--primary-soft);
+      stroke: var(--primary);
+    }
+
+    .card-sqlcipher {
+      fill: var(--coral-soft);
+      stroke: var(--coral);
+    }
+
+    .card-sqlite {
+      fill: var(--blue-soft);
+      stroke: var(--blue);
+    }
+
+    .connector {
+      stroke: var(--muted);
+      stroke-width: 1;
+    }
+
+    .arrow {
+      fill: var(--muted);
+    }
+
+    .heading,
+    .label,
+    .detail {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      text-anchor: middle;
+      dominant-baseline: middle;
+      text-rendering: geometricPrecision;
+    }
+
+    .heading {
+      fill: var(--ink);
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .label {
+      fill: var(--ink);
+      font-size: 21px;
+      font-weight: 700;
+    }
+
+    .detail {
+      fill: var(--muted);
+      font-size: 15px;
+      font-weight: 400;
+    }
+  </style>
+
+  <rect class="frame" x="0.5" y="0.5" width="671" height="455"/>
+
+
+  <rect class="card card-app" x="32.5" y="52.5" width="607" height="68"/>
+  <text class="label" x="336" y="76">Your app</text>
+  <text class="detail" x="336" y="100">Ready for the post-quantum future</text>
+
+  <line class="connector" x1="336.5" y1="120.5" x2="336.5" y2="137"/>
+  <polygon class="arrow" points="331.5,137 336.5,147 341.5,137"/>
+
+  <rect class="card card-textrunsql" x="32.5" y="148.5" width="607" height="68"/>
+  <text class="label" x="336" y="172">TextrunSQL</text>
+  <text class="detail" x="336" y="196">Protects the key that unlocks the data</text>
+
+  <line class="connector" x1="336.5" y1="216.5" x2="336.5" y2="233"/>
+  <polygon class="arrow" points="331.5,233 336.5,243 341.5,233"/>
+
+  <rect class="card card-sqlcipher" x="32.5" y="244.5" width="607" height="68"/>
+  <text class="label" x="336" y="268">SQLCipher</text>
+  <text class="detail" x="336" y="292">Encrypts the database</text>
+
+  <line class="connector" x1="336.5" y1="312.5" x2="336.5" y2="329"/>
+  <polygon class="arrow" points="331.5,329 336.5,339 341.5,329"/>
+
+  <rect class="card card-sqlite" x="32.5" y="340.5" width="607" height="68"/>
+  <text class="label" x="336" y="364">SQLite</text>
+  <text class="detail" x="336" y="388">Stores and queries the database</text>
+</svg>

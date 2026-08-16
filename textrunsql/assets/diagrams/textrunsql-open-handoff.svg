@@ -1,0 +1,271 @@
+<svg
+    class="flow-diagram open-flow"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 552 188"
+    fill="none"
+    width="672"
+    height="229"
+    role="img"
+    aria-labelledby="open-title open-desc"
+>
+  <style>
+    :root {
+      --blue: #8eb8ff;
+      --border-color: #cfcfd6;
+      --coral: #ff8b7a;
+      --diagram-line: #4a4a52;
+      --page-bg: #ececec;
+      --panel-bg: #f7f7f7;
+      --primary: #8a70b5;
+      --text: #222226;
+      --muted-text: #5c5c66;
+      --radius-flow: 6px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --blue: #8eb8ff;
+        --border-color: #3a3b44;
+        --coral: #ff9b8c;
+        --diagram-line: #a8a8b3;
+        --page-bg: #1a1b1f;
+        --panel-bg: #24252b;
+        --primary: #b39ddb;
+        --text: #ececf1;
+        --muted-text: #a8a8b3;
+      }
+    }
+
+    .diagram-background {
+      fill: var(--panel-bg);
+    }
+
+    .flow-line {
+      fill: none;
+      stroke: var(--diagram-line);
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1;
+    }
+
+    .arrowhead {
+      fill: var(--diagram-line);
+      stroke: none;
+    }
+
+    .guide-blue,
+    .guide-coral,
+    .guide-muted {
+      fill: none;
+      stroke-dasharray: 3 3;
+      stroke-width: 1;
+    }
+
+    .guide-blue {
+      opacity: 0.85;
+      stroke: var(--blue);
+    }
+
+    .guide-coral {
+      opacity: 0.75;
+      stroke: var(--coral);
+    }
+
+    .guide-muted {
+      stroke: var(--border-color);
+    }
+
+    .envelope-box,
+    .flow-box,
+    .flow-box-blue,
+    .flow-box-coral,
+    .flow-box-key,
+    .flow-box-primary {
+      rx: var(--radius-flow);
+      ry: var(--radius-flow);
+      shape-rendering: geometricPrecision;
+      stroke-width: 0.5px;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .flow-box {
+      fill: var(--panel-bg);
+      stroke: var(--border-color);
+    }
+
+    .flow-box-blue {
+      fill: color-mix(in srgb, var(--blue) 14%, var(--panel-bg));
+      stroke: color-mix(in srgb, var(--blue) 45%, var(--panel-bg));
+    }
+
+    .flow-box-coral {
+      fill: color-mix(in srgb, var(--coral) 12%, var(--panel-bg));
+      stroke: color-mix(in srgb, var(--coral) 45%, var(--panel-bg));
+    }
+
+    .flow-box-key {
+      stroke: color-mix(in srgb, var(--coral) 45%, var(--panel-bg));
+    }
+
+    .flow-box-primary {
+      fill: color-mix(in srgb, var(--primary) 14%, var(--panel-bg));
+      stroke: color-mix(in srgb, var(--primary) 45%, var(--panel-bg));
+    }
+
+    .envelope-box {
+      fill: color-mix(in srgb, var(--text) 4%, var(--panel-bg));
+      stroke: var(--border-color);
+    }
+
+    .seal-flow .flow-box-key {
+      fill: url("#seal-key-stripes");
+    }
+
+    .open-flow .flow-box-key {
+      fill: url("#open-key-stripes");
+    }
+
+    .section-badge {
+      fill: var(--diagram-line);
+      stroke: none;
+    }
+
+    .section-detail {
+      fill: color-mix(in srgb, var(--diagram-line) 10%, var(--panel-bg));
+      stroke: none;
+    }
+
+    .section-badge-text,
+    .section-detail-text {
+      dominant-baseline: middle;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .section-badge-text {
+      fill: var(--page-bg);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      text-anchor: middle;
+    }
+
+    .section-detail-text {
+      fill: var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      text-anchor: start;
+    }
+
+    .code-label,
+    .text-label,
+    .size-label {
+      dominant-baseline: middle;
+      text-anchor: middle;
+    }
+
+    .code-label,
+    .text-label {
+      fill: var(--text);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .code-label,
+    .size-label {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .text-label {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .size-label {
+      fill: var(--muted-text);
+      font-size: 9px;
+      font-weight: 400;
+    }
+
+    .detail-label {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 9.5px;
+      transform: translateY(0.5px);
+    }
+
+    .quarter-space {
+      font-size: 25%;
+    }
+
+    .half-space {
+      font-size: 50%;
+    }
+  </style>
+  <rect class="diagram-background" width="552" height="188" rx="6"/>
+    <title id="open-title">Open and handoff flow</title>
+    <desc id="open-desc">textrunsql_pq_open_dek() starts with the envelope, the matching private key, and the same context. It first validates the envelope format and checks that its recipient and context bindings match. ML-KEM-768 uses the private key and KEM ciphertext to recover the shared secret. HKDF derives the same wrapping key. AES-GCM checks the envelope and unwraps the 32-byte database key. The separate textrunsql_pq_key_sqlcipher() handoff takes an open database, a schema name, and the recovered key. It formats the key in SQLCipher raw-key syntax and calls sqlite3_key_v2() to set it. SQLCipher then uses the key to encrypt database pages.</desc>
+    <defs>
+        <pattern
+            id="open-key-stripes"
+            patternUnits="userSpaceOnUse"
+            width="8"
+            height="8"
+            patternTransform="rotate(45)"
+        >
+            <rect width="8" height="8" fill="color-mix(in srgb, var(--coral, #ff8b7a) 10%, var(--panel-bg, #f7f7f7))"/>
+            <rect width="4" height="8" fill="color-mix(in srgb, var(--coral, #ff8b7a) 28%, var(--panel-bg, #f7f7f7))"/>
+        </pattern>
+    </defs>
+    <path class="section-badge" d="M22,16 H55 V34 H22 Q16,34 16,28 V22 Q16,16 22,16 Z"/>
+    <path class="section-detail" d="M55,16 H228 Q234,16 234,22 V28 Q234,34 228,34 H55 Z"/>
+    <text class="section-badge-text" x="35.5" y="26">Open</text>
+    <text class="section-detail-text" x="62" y="26">textrunsql_pq_open_dek()</text>
+    <rect class="envelope-box" x="16" y="50" width="139" height="36"/>
+    <text class="text-label" x="85.5" y="63.5">Input</text>
+    <text class="size-label" x="85.5" y="75.5">envelope<tspan class="quarter-space"> </tspan>+<tspan class="quarter-space"> </tspan>key<tspan class="quarter-space"> </tspan>+<tspan class="quarter-space"> </tspan>context</text>
+    <line class="flow-line" x1="155" y1="68" x2="157.4" y2="68"/>
+    <polygon class="arrowhead" points="157.4,65.2 163,68 157.4,70.8"/>
+    <rect class="flow-box" x="163" y="50" width="96" height="36"/>
+    <text class="text-label" x="211" y="63.5">Validate</text>
+    <text class="size-label detail-label" x="211" y="75.5">format<tspan class="quarter-space"> </tspan>+<tspan class="quarter-space"> </tspan>bindings</text>
+    <line class="flow-line" x1="259" y1="68" x2="261.4" y2="68"/>
+    <polygon class="arrowhead" points="261.4,65.2 267,68 261.4,70.8"/>
+    <rect class="flow-box-blue" x="267" y="50" width="77" height="36"/>
+    <text class="text-label" x="305.5" y="63.5">Decaps</text>
+    <text class="size-label" x="305.5" y="75.5">ML-KEM-768</text>
+    <line class="flow-line" x1="344" y1="68" x2="346.4" y2="68"/>
+    <polygon class="arrowhead" points="346.4,65.2 352,68 346.4,70.8"/>
+    <rect class="flow-box-primary" x="352" y="50" width="56" height="36"/>
+    <text class="text-label" x="380" y="63.5">Derive</text>
+    <text class="size-label" x="380" y="75.5">HKDF</text>
+    <line class="flow-line" x1="408" y1="68" x2="410.4" y2="68"/>
+    <polygon class="arrowhead" points="410.4,65.2 416,68 410.4,70.8"/>
+    <rect class="flow-box-coral" x="416" y="50" width="62" height="36"/>
+    <text class="text-label" x="447" y="63.5">Unwrap</text>
+    <text class="size-label" x="447" y="75.5">AES-GCM</text>
+    <line class="flow-line" x1="478" y1="68" x2="480.4" y2="68"/>
+    <polygon class="arrowhead" points="480.4,65.2 486,68 480.4,70.8"/>
+    <rect class="flow-box-key" x="486" y="50" width="50" height="36"/>
+    <text class="code-label" x="511" y="63.5">DEK</text>
+    <text class="size-label" x="511" y="75.5">32<tspan class="half-space"> </tspan>B</text>
+    <path class="section-badge" d="M22,102 H73 V120 H22 Q16,120 16,114 V108 Q16,102 22,102 Z"/>
+    <path class="section-detail" d="M73,102 H279 Q285,102 285,108 V114 Q285,120 279,120 H73 Z"/>
+    <text class="section-badge-text" x="44.5" y="112">Handoff</text>
+    <text class="section-detail-text" x="80" y="112">textrunsql_pq_key_sqlcipher()</text>
+    <path class="flow-line" d="M511 86 V150 Q511 154 507 154 H473.6"/>
+    <polygon class="arrowhead" points="473.6,151.2 468,154 473.6,156.8"/>
+    <rect class="envelope-box" x="364" y="136" width="104" height="36"/>
+    <text class="text-label" x="416" y="149.5">Input</text>
+    <text class="size-label" x="416" y="161.5">db<tspan class="quarter-space"> </tspan>+<tspan class="quarter-space"> </tspan>schema<tspan class="quarter-space"> </tspan>+<tspan class="quarter-space"> </tspan>DEK</text>
+    <line class="flow-line" x1="364" y1="154" x2="361.6" y2="154"/>
+    <polygon class="arrowhead" points="361.6,151.2 356,154 361.6,156.8"/>
+    <rect class="flow-box" x="252" y="136" width="104" height="36"/>
+    <text class="text-label" x="304" y="149.5">Format</text>
+    <text class="size-label detail-label" x="304" y="161.5">raw-key syntax</text>
+    <line class="flow-line" x1="252" y1="154" x2="249.6" y2="154"/>
+    <polygon class="arrowhead" points="249.6,151.2 244,154 249.6,156.8"/>
+    <rect class="flow-box-coral" x="140" y="136" width="104" height="36"/>
+    <text class="text-label" x="192" y="149.5">Set key</text>
+    <text class="size-label" x="192" y="161.5">sqlite3_key_v2()</text>
+    <line class="flow-line" x1="140" y1="154" x2="137.6" y2="154"/>
+    <polygon class="arrowhead" points="137.6,151.2 132,154 137.6,156.8"/>
+    <rect class="flow-box" x="16" y="136" width="116" height="36"/>
+    <text class="text-label" x="74" y="149.5">SQLCipher</text>
+    <text class="size-label detail-label" x="74" y="161.5">Encrypts pages</text>
+</svg>
